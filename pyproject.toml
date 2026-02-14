@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "boolpack"
-version = "0.1.0"
+version = "v0.1.1"
 description = "Efficient bool list <-> bytes encoder/decoder (128/256/1024 bits)"
 authors = [
     {name = "0xc18", email = "salimsakib775@gmail.com"}
