@@ -1,24 +1,30 @@
-name: Build and Publish
+name: Build
 
-on:
-  push:
+on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    environment: pypi
-
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
     permissions:
       id-token: write
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v6
+
+      - name: Install cibuildwheel
+        run: python -m pip install cibuildwheel==3.3.1
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2
-        env:
-          CIBW_BUILD_VERBOSITY: 1
+        run: python -m cibuildwheel --output-dir dist
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
