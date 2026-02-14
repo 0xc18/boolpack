@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0", "cython>=0.29"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boolpack"
+version = "0.1.0"
+description = "Efficient bool list <-> bytes encoder/decoder (128/256/1024 bits)"
+authors = [
+    {name = "0xc18", email = "salimsakib775@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+ext-modules = [
+  {name = "boolpack", sources = ["src/boolpack.pyx"]}
+]
