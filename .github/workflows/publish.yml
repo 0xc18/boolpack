@@ -2,9 +2,6 @@ name: Build
 
 on:
   push:
-    tags:
-      - "v*"
-  pull_request:
 
 jobs:
   build_wheels:
